@@ -19,8 +19,8 @@
 
     int a[12] = {83,25,35,14,33,63,84,28,62,93,34,64};
     int count = sizeof(a) / sizeof(a[0]);
-    sort1(a, count);
-//    sort2(a, count);
+    bubblingSort(a, count);
+//    selectSort(a, count);
 //    insertSort(a, count);
 //    sortArr(a, 0, count - 1);
     for (int i = 0; i < count; i++) {
@@ -30,7 +30,7 @@
 }
 
 //冒泡排序
-void sort1(int array[],int count) {
+void bubblingSort(int array[],int count) {
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - 1 - i; j++) {
             if (array[j] > array[j + 1]) {
@@ -43,14 +43,18 @@ void sort1(int array[],int count) {
 }
 
 //选择排序
-void sort2(int array[],int count) {
-    for (int i = 0; i < count; i++) {
+void selectSort(int array[],int count) {
+    for (int i = 0; i < count - 1; i++) {
+        int minIndex = i;
         for (int j = i + 1; j < count; j++) {
-            if (array[i] > array[j]) {
-                int tmp = array[i];
-                array[i] = array[j];
-                array[j] = tmp;
+            if (array[minIndex] > array[j]) {
+                minIndex = j;
             }
+        }
+        if (minIndex != i) {
+            int tmp = array[i];
+            array[i] = array[minIndex];
+            array[minIndex] = tmp;
         }
     }
 }
