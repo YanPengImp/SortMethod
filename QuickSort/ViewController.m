@@ -19,10 +19,11 @@
 
     int a[12] = {83,25,35,14,33,63,84,28,62,93,34,64};
     int count = sizeof(a) / sizeof(a[0]);
-    bubblingSort(a, count);
+//    bubblingSort(a, count);
 //    selectSort(a, count);
 //    insertSort(a, count);
 //    sortArr(a, 0, count - 1);
+    shellSort(a,count);
     for (int i = 0; i < count; i++) {
         printf("%d\n", a[i]);
     }
@@ -96,6 +97,23 @@ int quickSort(int array[], int left, int right) {
     }
     array[left] = keyNum;
     return left;
+}
+
+//希尔排序
+void shellSort(int array[], int count) {
+    int interval = count / 2;
+    while (interval > 0) {
+        for (int i = interval; i < count; i++) {
+            int tmp = array[i];
+            int index = i - interval;
+            while (index >= 0 && tmp < array[index]) {
+                array[index + interval] = array[index];
+                index -= interval;
+            }
+            array[index + interval] = tmp;
+        }
+        interval /= 2;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
